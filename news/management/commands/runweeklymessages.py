@@ -38,7 +38,7 @@ def send_messages():
                 msg = EmailMultiAlternatives(
                         subject = 'News Paper. Новости за неделю',
                         body=f'Здравствуй, {user.username}. Узнай что произошло за неделю !',
-                        from_email = 'shagi80@yandex.ru',
+                        from_email = 'lyashenko_nastena@yandex.ru',
                         to = [user.email,]
                     )
                 # привязка HTML и отправка
