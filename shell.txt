@@ -1,0 +1,59 @@
+py manage.py makemigrations
+py manage.py migrate
+py manage.py createsuperuser
+
+py manage.py shell
+
+>>> from django.contrib.auth.models import User
+>>> user_1 = User.objects.create_user(username="user_1", password="1234")
+>>> user_2 = User.objects.create_user(username="user_2", password="1234")
+
+>>> from accounts.models import Author
+>>> author1 = Author.objects.create(user=user_1)
+>>> author2 = Author.objects.create(user=user_2)
+
+>>> from news.models import *
+>>> Category.objects.create(title="Категория 1")
+>>> Category.objects.create(title="Категория 2")
+>>> Category.objects.create(title="еще категория")
+
+>>> news1 = Post.objects.create(title="Загловок 1", author=author1)
+>>> news1.category.add(Category.objects.get(pk=1))
+>>> news1.text = "Текст новости"
+>>> news1.save()
+
+>>> art1 = Post.objects.create(title="Тайатл1", author=author1, content_type="ART")
+>>> art1.category.add(Category.objects.get(pk=3))
+>>> art1.category.add(Category.objects.get(pk=4)) 
+>>> art1.text = "Это текст статьи тестовый"
+>>> art1.save()
+
+>>> com1 = Comment.objects.create(text="Комент", post=news1, author=User.objects.get(username="user_1"))
+
+>>> news1.like()
+>>> news1.like()
+>>> news1.dislike()
+>>> art1.dislike()
+>>> com1.like()
+>>> com1.like()
+>>> com1.like()
+
+>>> author1.update_rating()
+
+>>> Author.objects.all().order_by('-rating')[0].user.username
+>>> Author.objects.all().order_by('-rating')[0].rating
+
+>>> best_post = Post.objects.all().order_by('-rating')[0]
+>>> str(best_post.created)
+>>> best_post.author.user.username 
+>>> best_post.rating
+>>> best_post.title
+>>> best_post.preview()
+
+>>> comments = Comment.objects.filter(post=best_post)
+>>> for comment in comments:
+...     f"{comments[0].created:%d.%m.%Y}"
+...     comment.author.username
+...     comment.rating
+...     comment.text
+
