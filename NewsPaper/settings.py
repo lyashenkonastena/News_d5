@@ -176,7 +176,7 @@ ACCOUNT_FORMS = {'signup': 'accounts.forms.BasicSignupForm'}
 
 EMAIL_HOST = 'smtp.yandex.ru' 
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'shagi80'
+EMAIL_HOST_USER = 'lyashenkonastena'
 EMAIL_HOST_PASSWORD = 'EMAIL_PASSWORD'
 EMAIL_USE_SSL = True
 
@@ -208,9 +208,9 @@ CACHES = {
 
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
 
-ADMINS = [('shagi80', 'shagi80@mail.ru'),]
+ADMINS = [('lyashenko_nastena', 'lyashenko_nastena@mail.ru'),]
 
-SERVER_EMAIL = 'shagi80@yandex.ru'
+SERVER_EMAIL = 'lyashenko_nastena@yandex.ru'
 
 
 def debug_and_info_filter(record):
@@ -337,4 +337,3 @@ LOGGING = {
         },
     }
 }
-
